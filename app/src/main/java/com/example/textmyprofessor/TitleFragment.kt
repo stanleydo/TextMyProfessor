@@ -26,7 +26,9 @@ class TitleFragment : Fragment() {
         val binding = DataBindingUtil.inflate<FragmentTitleBinding>(inflater,
             R.layout.fragment_title,container,false)
 
-        val startButton  = binding.startBtn
+        binding.startBtn.setOnClickListener{view: View ->
+            view.findNavController().navigate(R.id.action_titleFragment_to_createRoomFragment)
+        }
 
         return binding.root
     }
