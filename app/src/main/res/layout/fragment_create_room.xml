@@ -16,7 +16,7 @@
             android:text="Room ID:"
             android:textSize="24sp"
             app:layout_constraintStart_toStartOf="@+id/editText"
-            app:layout_constraintTop_toBottomOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/createRoomImg"
             tools:ignore="HardcodedText" />
 
         <EditText
@@ -35,7 +35,7 @@
             tools:ignore="HardcodedText" />
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/createRoomImg"
             android:layout_width="344dp"
             android:layout_height="122dp"
             android:layout_marginTop="32dp"
@@ -57,7 +57,7 @@
             app:srcCompat="@android:drawable/ic_menu_manage" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/createRoomBtn"
             android:layout_width="@+id/editText"
             android:layout_height="wrap_content"
             android:background="@color/white"
@@ -67,7 +67,8 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/editText"
             app:layout_constraintTop_toBottomOf="@+id/settingsBtn"
-            app:layout_constraintVertical_bias="0.158" />
+            app:layout_constraintVertical_bias="0.158"
+            tools:ignore="HardcodedText" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

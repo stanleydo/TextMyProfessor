@@ -6,25 +6,25 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".chatRoomFragment">
+        tools:context=".ChatRoomFragment">
 
         <TextView
-            android:id="@+id/editText2"
-            android:layout_width="match_parent"
-            android:layout_height="600dp"
+            android:id="@+id/chatBox"
+            android:layout_width="384dp"
+            android:layout_height="533dp"
             android:layout_margin="10sp"
             android:ems="10"
             android:gravity="start|top"
-            android:textSize="20sp"
             android:hint="Student: Can you please repeat that? \nStudent2: I couldn't hear either!"
             android:overScrollMode="always"
+            android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="HardcodedText" />
 
         <ImageButton
-            android:id="@+id/imageButton"
+            android:id="@+id/sendBtn"
             android:layout_width="71dp"
             android:layout_height="75dp"
             android:background="@android:color/transparent"
@@ -46,7 +46,8 @@
             android:inputType="textMultiLine"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editText2"
+            app:layout_constraintTop_toBottomOf="@+id/chatBox"
+            app:layout_constraintVertical_bias="0.205"
             tools:ignore="HardcodedText" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
