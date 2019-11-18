@@ -19,5 +19,14 @@
         android:id="@+id/createRoomFragment"
         android:name="com.example.textmyprofessor.CreateRoomFragment"
         android:label="CreateRoomFragment"
-        tools:layout="@layout/fragment_create_room"/>
+        tools:layout="@layout/fragment_create_room">
+        <action
+            android:id="@+id/action_createRoomFragment_to_chatRoomFragment"
+            app:destination="@id/chatRoomFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/chatRoomFragment"
+        android:name="com.example.textmyprofessor.chatRoomFragment"
+        android:label="chatRoomFragment"
+        tools:layout="@layout/fragment_chat_room"/>
 </navigation>

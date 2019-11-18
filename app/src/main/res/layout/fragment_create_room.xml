@@ -6,12 +6,13 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainActivity">
+        tools:context=".CreateRoomFragment">
+
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="101dp"
+            android:layout_marginTop="80dp"
             android:text="Room ID:"
             android:textSize="24sp"
             app:layout_constraintStart_toStartOf="@+id/editText"
@@ -45,6 +46,28 @@
             app:layout_constraintHorizontal_bias="0.492"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/settingsBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            app:layout_constraintStart_toStartOf="@+id/editText"
+            app:layout_constraintTop_toBottomOf="@+id/editText"
+            app:srcCompat="@android:drawable/ic_menu_manage" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="@+id/editText"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:text="Create Room"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/editText"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/editText"
+            app:layout_constraintTop_toBottomOf="@+id/settingsBtn"
+            app:layout_constraintVertical_bias="0.158" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
