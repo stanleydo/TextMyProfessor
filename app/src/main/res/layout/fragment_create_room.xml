@@ -15,12 +15,12 @@
             android:layout_marginTop="80dp"
             android:text="Room ID:"
             android:textSize="24sp"
-            app:layout_constraintStart_toStartOf="@+id/editText"
+            app:layout_constraintStart_toStartOf="@+id/roomID"
             app:layout_constraintTop_toBottomOf="@+id/createRoomImg"
             tools:ignore="HardcodedText" />
 
         <EditText
-            android:id="@+id/editText"
+            android:id="@+id/roomID"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="12"
@@ -52,20 +52,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
-            app:layout_constraintStart_toStartOf="@+id/editText"
-            app:layout_constraintTop_toBottomOf="@+id/editText"
+            app:layout_constraintStart_toStartOf="@+id/roomID"
+            app:layout_constraintTop_toBottomOf="@+id/roomID"
             app:srcCompat="@android:drawable/ic_menu_manage" />
 
         <Button
             android:id="@+id/createRoomBtn"
-            android:layout_width="@+id/editText"
+            android:layout_width="@+id/roomID"
             android:layout_height="wrap_content"
             android:background="@color/white"
             android:text="Create Room"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/editText"
+            app:layout_constraintEnd_toEndOf="@+id/roomID"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/editText"
+            app:layout_constraintStart_toStartOf="@+id/roomID"
             app:layout_constraintTop_toBottomOf="@+id/settingsBtn"
             app:layout_constraintVertical_bias="0.158"
             tools:ignore="HardcodedText" />

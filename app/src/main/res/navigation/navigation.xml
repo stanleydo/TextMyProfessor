@@ -18,15 +18,18 @@
     <fragment
         android:id="@+id/createRoomFragment"
         android:name="com.example.textmyprofessor.CreateRoomFragment"
-        android:label="CreateRoomFragment"
-        tools:layout="@layout/fragment_create_room">
+        android:label="CreateRoomFragment">
         <action
             android:id="@+id/action_createRoomFragment_to_ChatRoomFragment"
-            app:destination="@id/chatRoomFragment" />
+            app:destination="@+id/chatRoomFragment" />
     </fragment>
     <fragment
         android:id="@+id/chatRoomFragment"
         android:name="com.example.textmyprofessor.ChatRoomFragment"
         android:label="chatRoomFragment"
-        tools:layout="@layout/fragment_chat_room"/>
+        tools:layout="@layout/fragment_chat_room">
+        <argument
+            android:name="roomid"
+            app:argType="string" />
+    </fragment>
 </navigation>
