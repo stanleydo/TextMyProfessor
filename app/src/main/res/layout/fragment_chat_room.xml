@@ -8,21 +8,6 @@
         android:layout_height="match_parent"
         tools:context=".ChatRoomFragment">
 
-        <TextView
-            android:id="@+id/chatBox"
-            android:layout_width="384dp"
-            android:layout_height="533dp"
-            android:layout_margin="10sp"
-            android:ems="10"
-            android:gravity="start|top"
-            android:hint="Student: Can you please repeat that? \nStudent2: I couldn't hear either!"
-            android:overScrollMode="always"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="HardcodedText" />
-
         <ImageButton
             android:id="@+id/sendBtn"
             android:layout_width="71dp"
@@ -47,8 +32,16 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/chatBox"
-            app:layout_constraintVertical_bias="0.205"
             tools:ignore="HardcodedText" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/chatBox"
+            android:layout_width="384dp"
+            android:layout_height="533dp"
+            android:layout_margin="10sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
