@@ -1,9 +1,6 @@
 package com.example.textmyprofessor
 
-class Message {
+import java.util.*
 
-    var timestamp: String? = ""
-    var user: String = ""
-    var text: String = ""
+data class Message (var time: String = "", var user: String = "", var text: String = "")
 
-}
