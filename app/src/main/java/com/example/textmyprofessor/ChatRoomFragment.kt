@@ -1,8 +1,7 @@
 package com.example.textmyprofessor
 
+import MessageAdapter
 import android.content.ContentValues.TAG
-import android.content.Context
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -10,10 +9,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.textmyprofessor.databinding.FragmentChatRoomBinding
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.fragment_chat_room.*
 import java.util.*
 
 // TODO: Rename parameter arguments, choose names that match
@@ -36,12 +36,27 @@ class ChatRoomFragment : Fragment() {
 
         database = FirebaseDatabase.getInstance().reference
 
+        // Passing the room ID from the Create Room Fragment
         val args = ChatRoomFragmentArgs.fromBundle(arguments!!)
         val room_id = args.roomid
 
+        // Populating the RecyclerView
+        binding.chatBox.layoutManager = LinearLayoutManager(this.context)
+        binding.chatBox.adapter = MessageAdapter(database.child("chat-rooms").child(room_id), binding.chatBox)
+
         binding.sendBtn.setOnClickListener{
+            //The editText that the professor will use as input
             val text = binding.inputMsgText.text.toString()
-            database.child("chat-rooms").child(room_id).child("Professor at " + Date()).setValue(text)
+            //Creates a new entry in the database in "chat-rooms" with name "Professor at *DATE*" and sets the value to the input
+            val date = Date()
+            val msg = Message(time = date.toString(), user = "Professor", text = text)
+
+            val autoGenKey = database.child("chat-rooms").child(room_id).push()
+
+            val key: String = autoGenKey.key.toString()
+
+            database.child("chat-rooms").child(room_id).child(key).setValue(msg)
+//            Log.d(TAG, "onChildAdded:" + DataSnapshot.getValue(Message::class.javaObjectType)!!)
         }
 
         return binding.root
