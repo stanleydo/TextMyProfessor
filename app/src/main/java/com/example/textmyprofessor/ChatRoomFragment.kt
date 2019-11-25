@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
+import android.widget.EditText
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -48,6 +50,7 @@ class ChatRoomFragment : Fragment() {
         binding.chatBox.layoutManager = LinearLayoutManager(this.context)
         binding.chatBox.adapter = MessageAdapter(database.child("chat-rooms").child(room_id), binding.chatBox)
 
+        // Send Button Listener
         binding.sendBtn.setOnClickListener{
             //The editText that the professor will use as input
             val text = binding.inputMsgText.text.toString()
@@ -70,6 +73,36 @@ class ChatRoomFragment : Fragment() {
                 binding.inputMsgText.setText("")
             }
         }
+
+        // Text Editor IME Action Listener
+        binding.inputMsgText.setOnEditorActionListener { v, actionId, event ->
+            if(actionId == EditorInfo.IME_ACTION_SEND ){
+                val text = binding.inputMsgText.text.toString()
+                //Creates a new entry in the database in "chat-rooms" with name "Professor at *DATE*" and sets the value to the input
+
+                // Do nothing if the the field is blank
+                if(text.isEmpty()) {
+                    Toast.makeText(this.context,"Enter a message",Toast. LENGTH_SHORT).show()
+                }
+                else {
+
+                    val date = Date()
+                    val msg = Message(time = date.toString(), user = "Professor", text = text)
+                    val autoGenKey = database.child("chat-rooms").child(room_id).push()
+                    val key: String = autoGenKey.key.toString()
+                    database.child("chat-rooms").child(room_id).child(key).setValue(msg)
+                    //Clear the text after submitting
+                    binding.inputMsgText.setText("")
+                }
+                true
+            }
+            else{
+                false
+            }
+        }
+
+
+
         return binding.root
     }
 }
