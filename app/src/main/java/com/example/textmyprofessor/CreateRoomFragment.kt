@@ -63,18 +63,21 @@ class CreateRoomFragment : Fragment() {
 
                         // Set a positive button and its click listener on alert dialog (Create New Room)
                         builder.setPositiveButton("New Room"){dialog, which ->
-                            // Do something when user press the positive button
                             roomCreatedToast()
+                            // Create new room
                             database.child("chat-rooms").child(binding.roomID.text.toString()).setValue("")
+                            // Change view
                             view.findNavController().navigate(CreateRoomFragmentDirections.actionCreateRoomFragmentToChatRoomFragment(binding.roomID.text.toString()))
+                            // Remove the database EventListener
                             database.removeEventListener(this)
                         }
 
                         // Display a negative button on alert dialog (Join Existing Room)
                         builder.setNegativeButton("Join Existing Room"){dialog,which ->
-                            //this joins the room !?!?
                             roomJoinedToast()
+                            // Join room and change view
                             view.findNavController().navigate(CreateRoomFragmentDirections.actionCreateRoomFragmentToChatRoomFragment(binding.roomID.text.toString()))
+                            // Remove the database EventListener
                             database.removeEventListener(this)
                         }
 
@@ -89,26 +92,26 @@ class CreateRoomFragment : Fragment() {
                         dialog.show()
                     }
                     else{
+                        // Creates a new room
                         view.findNavController().navigate(CreateRoomFragmentDirections.actionCreateRoomFragmentToChatRoomFragment(binding.roomID.text.toString()))
                         roomCreatedToast()
+                        // Remove the database EventListener
                         database.removeEventListener(this)
                     }
-                    // ...
                 }
                 override fun onCancelled(databaseError: DatabaseError) {
                     // Getting Post failed, log a message
                     Log.w(TAG, "loadPost:onCancelled", databaseError.toException())
-                    // ...
                 }
             }
+            // Add database Event Listener
             database.addValueEventListener(postListener)
-
         }
 
         return binding.root
     }
-//    database.removeEventListener(postListener)
 
+    // Toasts for easy implementation
     fun roomTakenToast(){
         Toast.makeText(this.context,"Room is Taken", Toast. LENGTH_SHORT).show()
     }
