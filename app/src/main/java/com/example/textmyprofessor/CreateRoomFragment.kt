@@ -1,5 +1,6 @@
 package com.example.textmyprofessor
 
+import android.app.AlertDialog
 import android.content.ContentValues
 import android.content.ContentValues.TAG
 import android.content.Context
@@ -13,6 +14,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.FragmentManager
 import androidx.navigation.findNavController
 import com.example.textmyprofessor.databinding.FragmentCreateRoomBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -33,6 +35,8 @@ class CreateRoomFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+
         val binding = DataBindingUtil.inflate<FragmentCreateRoomBinding>(inflater,
             R.layout.fragment_create_room,container,false)
         // Inflate the layout for this fragment
@@ -42,20 +46,52 @@ class CreateRoomFragment : Fragment() {
         auth.signInAnonymously()
 
 
-
         binding.createRoomBtn.setOnClickListener{
-
-            view: View ->
-//            database.child("chat-rooms").child(binding.roomID.text.toString()).setValue("")
+                view: View ->
             val postListener = object : ValueEventListener {
+
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     // Get Post object and use the values to update the UI
                     if(dataSnapshot.child("chat-rooms").hasChild(binding.roomID.text.toString())){
                         roomTakenToast()
+
+                        // Alert Dialogue box
+                        val builder = AlertDialog.Builder(context)
+
+                        // Display a message on alert dialog
+                        builder.setMessage("This room name already exists. Do you want to make a new one?")
+
+                        // Set a positive button and its click listener on alert dialog (Create New Room)
+                        builder.setPositiveButton("New Room"){dialog, which ->
+                            // Do something when user press the positive button
+                            roomCreatedToast()
+                            database.child("chat-rooms").child(binding.roomID.text.toString()).setValue("")
+                            view.findNavController().navigate(CreateRoomFragmentDirections.actionCreateRoomFragmentToChatRoomFragment(binding.roomID.text.toString()))
+                            database.removeEventListener(this)
+                        }
+
+                        // Display a negative button on alert dialog (Join Existing Room)
+                        builder.setNegativeButton("Join Existing Room"){dialog,which ->
+                            //this joins the room !?!?
+                            roomJoinedToast()
+                            view.findNavController().navigate(CreateRoomFragmentDirections.actionCreateRoomFragmentToChatRoomFragment(binding.roomID.text.toString()))
+                            database.removeEventListener(this)
+                        }
+
+                        // Display a neutral button on alert dialog (Cancel)
+                        builder.setNeutralButton("Cancel"){_,_ ->
+                        }
+
+                        // Finally, make the alert dialog using builder
+                        val dialog: AlertDialog = builder.create()
+
+                        // Display the alert dialog on app interface
+                        dialog.show()
                     }
                     else{
                         view.findNavController().navigate(CreateRoomFragmentDirections.actionCreateRoomFragmentToChatRoomFragment(binding.roomID.text.toString()))
                         roomCreatedToast()
+                        database.removeEventListener(this)
                     }
                     // ...
                 }
@@ -71,7 +107,7 @@ class CreateRoomFragment : Fragment() {
 
         return binding.root
     }
-
+//    database.removeEventListener(postListener)
 
     fun roomTakenToast(){
         Toast.makeText(this.context,"Room is Taken", Toast. LENGTH_SHORT).show()
@@ -81,4 +117,7 @@ class CreateRoomFragment : Fragment() {
         Toast.makeText(this.context,"Room Created", Toast. LENGTH_SHORT).show()
     }
 
+    fun roomJoinedToast(){
+        Toast.makeText(this.context,"Room Joined", Toast. LENGTH_SHORT).show()
+    }
 }
