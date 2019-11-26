@@ -93,6 +93,8 @@ class CreateRoomFragment : Fragment() {
                     }
                     else{
                         // Creates a new room
+                        database.child("chat-rooms").child(binding.roomID.text.toString()).setValue("")
+                        //Changed view
                         view.findNavController().navigate(CreateRoomFragmentDirections.actionCreateRoomFragmentToChatRoomFragment(binding.roomID.text.toString()))
                         roomCreatedToast()
                         // Remove the database EventListener
