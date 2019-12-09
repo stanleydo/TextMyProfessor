@@ -31,6 +31,9 @@ class ChatRoomFragment : Fragment() {
 
     private lateinit var database: DatabaseReference
 
+    val professorTextColor: String = "#C04161"
+    val studentTextColor: String = "#122960"
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
