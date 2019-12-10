@@ -51,7 +51,7 @@ class ChatRoomFragment : Fragment() {
 
         // Populating the RecyclerView
         binding.chatBox.layoutManager = LinearLayoutManager(this.context)
-        binding.chatBox.adapter = MessageAdapter(database.child("chat-rooms").child(room_id), binding.chatBox)
+        binding.chatBox.adapter = MessageAdapter(database.child("chat-rooms").child(room_id).child("messages"), binding.chatBox)
 
         // Send Button Listener
         binding.sendBtn.setOnClickListener{
@@ -67,9 +67,9 @@ class ChatRoomFragment : Fragment() {
 
                 val date = Date()
                 val msg = Message(time = date.toString(), user = "Professor", text = text)
-                val autoGenKey = database.child("chat-rooms").child(room_id).push()
+                val autoGenKey = database.child("chat-rooms").child(room_id).child("messages").push()
                 val key: String = autoGenKey.key.toString()
-                database.child("chat-rooms").child(room_id).child(key).setValue(msg)
+                database.child("chat-rooms").child(room_id).child("messages").child(key).setValue(msg)
 //            Log.d(TAG, "onChildAdded:" + DataSnapshot.getValue(Message::class.javaObjectType)!!)
 
                 //Clear the text after submitting
@@ -91,9 +91,9 @@ class ChatRoomFragment : Fragment() {
 
                     val date = Date()
                     val msg = Message(time = date.toString(), user = "Professor", text = text)
-                    val autoGenKey = database.child("chat-rooms").child(room_id).push()
+                    val autoGenKey = database.child("chat-rooms").child("messages").child(room_id).push()
                     val key: String = autoGenKey.key.toString()
-                    database.child("chat-rooms").child(room_id).child(key).setValue(msg)
+                    database.child("chat-rooms").child(room_id).child("messages").child(key).setValue(msg)
                     //Clear the text after submitting
                     binding.inputMsgText.setText("")
                 }
