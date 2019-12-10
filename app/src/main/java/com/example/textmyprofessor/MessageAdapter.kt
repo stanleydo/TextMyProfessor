@@ -15,6 +15,10 @@ import kotlinx.android.synthetic.main.fragment_create_room.view.*
 import kotlinx.android.synthetic.main.list_item.view.*
 import org.w3c.dom.Comment
 import android.graphics.Color
+import android.media.RingtoneManager
+//import android.R
+
+
 
 //import com.example.textmyprofessor.Message
 
@@ -33,6 +37,8 @@ class MessageAdapter(private val database: DatabaseReference, private val recycl
 
 //                Log.d(TAG, "MAP: " + map)
 
+
+
                 // A new comment has been added, add it to the displayed list
                 val msg: Message? = dataSnapshot.getValue(Message::class.java)
                 Log.d(TAG, "USER: " + msg?.user)
@@ -40,6 +46,16 @@ class MessageAdapter(private val database: DatabaseReference, private val recycl
                 Log.d(TAG, "TIME: " + msg?.time)
                 messagesList.add(msg)
                 notifyDataSetChanged()
+
+                // TODO: Spencer add media for notification sound
+                // Create a notification sound when child is added
+                if (msg?.user != "Professor"){
+                    // import media
+                }
+
+
+
+
                 recyclerView.scrollToPosition(messagesList.size-1)
             }
 

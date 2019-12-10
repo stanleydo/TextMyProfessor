@@ -28,6 +28,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <TextView
         android:id="@+id/text_item"
         android:layout_width="wrap_content"
@@ -38,7 +39,7 @@
         android:background="@drawable/rounded_rectangle"
         android:paddingStart="8dp"
         android:paddingTop="8dp"
-        android:paddingEnd="50dp"
+        android:paddingEnd="20dp"
         android:paddingBottom="8dp"
         android:textSize="16sp"
         app:layout_constrainedWidth="true"
