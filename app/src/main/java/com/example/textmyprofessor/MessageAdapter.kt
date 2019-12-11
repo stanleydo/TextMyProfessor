@@ -1,5 +1,6 @@
 import android.content.ContentValues.TAG
 import android.content.Context
+import android.content.res.ColorStateList
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +16,7 @@ import kotlinx.android.synthetic.main.fragment_create_room.view.*
 import kotlinx.android.synthetic.main.list_item.view.*
 import org.w3c.dom.Comment
 import android.graphics.Color
+import android.graphics.drawable.Drawable
 import android.media.RingtoneManager
 //import android.R
 
@@ -94,11 +96,11 @@ class MessageAdapter(private val database: DatabaseReference, private val recycl
         if (msg?.user == "Professor") {
             holder.view.user_item.setTextColor(Color.parseColor(professorTextColor))
             holder.view.text_item.setTextColor(Color.parseColor(professorTextColor))
-            holder.view.timestamp_item.setTextColor(Color.parseColor(professorTextColor))
+            holder.view.text_item.setBackgroundResource(R.drawable.rounded_rectangle)
         } else {
             holder.view.user_item.setTextColor(Color.parseColor(studentTextColor))
             holder.view.text_item.setTextColor(Color.parseColor(studentTextColor))
-            holder.view.timestamp_item.setTextColor(Color.parseColor(studentTextColor))
+            holder.view.text_item.setBackgroundResource(R.drawable.rounded_rectangle_student)
         }
 
         holder.view.text_item.text = msg?.text
