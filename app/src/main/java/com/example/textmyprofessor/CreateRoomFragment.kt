@@ -142,7 +142,7 @@ class CreateRoomFragment : Fragment() {
                                     input.setLayoutParams(lp)
                                     passBuilder2.setView(input)
 
-                                    passBuilder2.setPositiveButton("Create") { dialog, which ->
+                                    passBuilder2.setPositiveButton("Create") { _, _ ->
                                         val input_pw = input.text.toString()
                                         if (input_pw == joinPass) {
                                             roomJoinedToast()
@@ -261,17 +261,13 @@ class CreateRoomFragment : Fragment() {
         Toast.makeText(this.context, "Password: $password", Toast.LENGTH_LONG).show()
     }
 
-    fun invalidPasswordToast() {
-        Toast.makeText(this.context, "Invalid Password. Try Again.", Toast.LENGTH_LONG).show()
-    }
-
     fun openSettings(passwordLock: ImageView) {
         val builder = AlertDialog.Builder(context)
         builder.setTitle("Select Your Preference")
 
         builder.setMessage("Enter a Password")
 
-        val input: EditText = EditText(context)
+        val input = EditText(context)
         val lp: LinearLayout.LayoutParams = LinearLayout.LayoutParams(
             LinearLayout.LayoutParams.MATCH_PARENT,
             LinearLayout.LayoutParams.MATCH_PARENT)
