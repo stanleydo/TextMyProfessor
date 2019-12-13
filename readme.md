@@ -1,4 +1,4 @@
-# Text My Professor Professor Edition
+# Text My Professor: Professor Edition
 ### Fall 2019
 ### CS-4540 Android Project
 
