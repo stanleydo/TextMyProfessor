@@ -12,7 +12,7 @@ This app collaborates with "Text My Professor Student Edition" app which is mean
 1. Professor will install "Text My Professor" app and Students will install "Text My Professor Student Edition"
 2. Professor / instructor can create a new room with a unique ID or join an existing one.
 4. Professor / instructor shares the Room ID and password to the students.
-5. Students enter the chat-room by inputting the corresponding Room ID and password.
+5. Students enter the chat-room by inputting the corresponding Room ID and password (if assigned one).
 
 ## Features:
 - Join a chat-room that a professor have created
@@ -24,8 +24,8 @@ This app collaborates with "Text My Professor Student Edition" app which is mean
 - Profanity filter
 
 ## Requirements:
-- Minimal Android Operating System: 4.0 or higher
-- Internet connection
+- Minimum Android Operating System: 4.0 or higher
+- Basic Internet connection
 
 ## Credits:
 - Spencer Young  (spenceryoungcs@gmail.com)
